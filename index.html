@@ -53,27 +53,12 @@ body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg-dark); co
   pointer-events:none;
   z-index:-1;
 }
-/* Finger pointer + label below (default) */
+/* No "Click here" text — pulse highlight only */
 .guide-pulse::after {
-  content:'👆 Click here';
-  position:absolute;
-  top:calc(100% + 12px); left:50%;
-  transform:translate(-50%, 0);
-  font-size:16px;
-  font-family:'Plus Jakarta Sans', sans-serif;
-  font-weight:600;
-  color:var(--signal-green);
-  white-space:nowrap;
-  animation: fingerBob 1s ease-in-out infinite;
-  filter: drop-shadow(0 2px 8px rgba(34,197,94,0.5));
-  pointer-events:none;
-  text-shadow: 0 0 10px rgba(34,197,94,0.4);
+  display:none;
 }
-/* Override: label above for bottom-pinned buttons */
 .guide-pulse-top::after {
-  content:'👇 Click here';
-  top:auto;
-  bottom:calc(100% + 12px);
+  display:none;
 }
 
 /* ===== LOGO IMAGE ===== */
@@ -128,6 +113,7 @@ body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg-dark); co
 }
 .home-center h2 { font-size:clamp(14px, 1.5vw, 18px); font-weight:500; color:var(--text-secondary); }
 .home-center h2 span { color:var(--accent-pink); }
+.home-logo-icon { width:clamp(60px, 8vw, 100px); height:auto; object-fit:contain; }
 
 .btn {
   padding:clamp(10px, 1.2vh, 14px) clamp(32px, 4vw, 48px); border-radius:50px; border:none;
@@ -326,6 +312,26 @@ body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg-dark); co
 
 .report-complete-row { display:flex; justify-content:center; margin-top:clamp(16px, 2vh, 24px); }
 
+/* Side-by-side report images */
+.reports-side-by-side {
+  display:flex; gap:clamp(1rem, 2.5vw, 2rem); flex:1; min-height:0; align-items:flex-start;
+  overflow-y:auto; justify-content:center;
+}
+.report-image-col {
+  flex:0 1 33rem; display:flex; flex-direction:column; align-items:center; min-width:0;
+}
+.report-col-label {
+  font-size:clamp(0.8rem, 1.3vw, 1rem); font-weight:700; color:var(--text-primary);
+  margin-bottom:clamp(0.625rem, 1.3vh, 1rem); text-align:center;
+}
+.report-image-wrapper {
+  width:100%; background:#fff; border-radius:0.75rem; overflow:hidden;
+  box-shadow:0 0.25rem 1.5rem rgba(0,0,0,0.25);
+}
+.report-image-wrapper img {
+  width:100%; height:auto; display:block;
+}
+
 /* ===== SCREEN 9: SUCCESS ===== */
 .success-screen { flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:clamp(16px, 2vh, 24px); padding:clamp(16px, 3vw, 32px); }
 .success-screen h1 { font-size:clamp(22px, 2.8vw, 34px); font-weight:700; text-align:center; line-height:1.3; }
@@ -361,6 +367,8 @@ body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg-dark); co
   .patient-hint { max-width:100%; }
   .report-patient { grid-template-columns:1fr; }
   .vitals-grid { grid-template-columns:repeat(2, 1fr); }
+  .reports-side-by-side { flex-direction:column; align-items:center; }
+  .report-image-col { max-width:22rem; width:100%; }
 }
 
 @media (max-width:600px) {
@@ -422,17 +430,7 @@ body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg-dark); co
         <p class="greeting">Good afternoon,<br><strong>Dr Smith</strong></p>
       </div>
       <div class="home-center">
-        <div class="waveform-icon">
-          <div class="bar" style="height:30px;animation-delay:0s"></div>
-          <div class="bar" style="height:50px;animation-delay:0.1s"></div>
-          <div class="bar" style="height:70px;animation-delay:0.2s"></div>
-          <div class="bar" style="height:80px;animation-delay:0.15s"></div>
-          <div class="bar" style="height:55px;animation-delay:0.25s"></div>
-          <div class="bar" style="height:75px;animation-delay:0.05s"></div>
-          <div class="bar" style="height:65px;animation-delay:0.3s"></div>
-          <div class="bar" style="height:45px;animation-delay:0.18s"></div>
-          <div class="bar" style="height:60px;animation-delay:0.22s"></div>
-        </div>
+        <img src="logo_sq.png" alt="LHAI Logo" class="home-logo-icon" />
         <h2>Let&#39;s setup your Light<span>Scope</span></h2>
         <button class="btn guide-pulse" onclick="goTo('screen-connect-empty')">Connect</button>
       </div>
@@ -555,17 +553,7 @@ body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg-dark); co
         <div class="rec-card" style="opacity:0.15"></div>
       </div>
       <div class="home-center">
-        <div class="waveform-icon">
-          <div class="bar" style="height:30px;animation-delay:0s"></div>
-          <div class="bar" style="height:50px;animation-delay:0.1s"></div>
-          <div class="bar" style="height:70px;animation-delay:0.2s"></div>
-          <div class="bar" style="height:80px;animation-delay:0.15s"></div>
-          <div class="bar" style="height:55px;animation-delay:0.25s"></div>
-          <div class="bar" style="height:75px;animation-delay:0.05s"></div>
-          <div class="bar" style="height:65px;animation-delay:0.3s"></div>
-          <div class="bar" style="height:45px;animation-delay:0.18s"></div>
-          <div class="bar" style="height:60px;animation-delay:0.22s"></div>
-        </div>
+        <img src="logo_sq.png" alt="LHAI Logo" class="home-logo-icon" />
         <h2>Add a New Recording</h2>
         <button class="btn guide-pulse" onclick="goTo('screen-patient')">New Recording</button>
       </div>
@@ -642,76 +630,18 @@ body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg-dark); co
     <!-- SCREEN 8: Reports -->
     <div class="screen" id="screen-reports">
       <div class="reports-screen">
-        <div class="reports-tabs">
-          <button class="tab-btn active" onclick="showReport('clinician',this)">Clinician Facing Report</button>
-          <button class="tab-btn" onclick="showReport('patient',this)">Patient Facing Report</button>
-        </div>
-
-        <!-- Clinician Report -->
-        <div id="report-clinician" class="report-card">
-          <div class="report-header">
-            <div class="rh-left">
-              <img src="lhai_logo.png" alt="lighthearted ai" class="brand-logo" style="height:22px;filter:brightness(0) saturate(100%);" />
-              <div class="web">Website: www.lighthearted.ai<br>Email: info@lighthearted.ai</div>
+        <div class="reports-side-by-side">
+          <div class="report-image-col">
+            <h3 class="report-col-label">Clinical Report</h3>
+            <div class="report-image-wrapper">
+              <img src="AS_screening_clinical_report.png" alt="Clinical Facing Report" />
             </div>
-            <div class="rh-right">ID No: C-15-50471</div>
           </div>
-          <div class="report-patient">
-            <div><span class="label">Patient:</span> <span class="value" id="rp-name-c">Jane Doe</span></div>
-            <div><span class="label">Date of Test:</span> <span class="value">15/09/2025</span></div>
-            <div><span class="label">Patient ID:</span> <span class="value">2210132</span></div>
-            <div><span class="label">Age/Sex:</span> <span class="value" id="rp-age-c">55 / Female</span></div>
-          </div>
-          <div class="report-title">LightScope Optical Stethoscope Report</div>
-          <div class="vitals-grid">
-            <div class="vital-item"><div class="vl">Heart Rate</div><div class="vv">66 BPM</div></div>
-            <div class="vital-item"><div class="vl">Heart Rate Variability</div><div class="vv">25 ms</div></div>
-            <div class="vital-item"><div class="vl">Respiratory Rate</div><div class="vv">N/A</div></div>
-            <div class="vital-item"><div class="vl">Signal Quality</div><div class="vv">Good</div></div>
-          </div>
-          <div class="report-note"><strong>Note:</strong> In healthy adults, average heart rate variability is 42 milliseconds &mdash; the range is between 19 and 75 milliseconds.</div>
-          <div class="report-chart"><canvas id="reportChartC"></canvas></div>
-          <div class="findings-section">
-            <h3>LightScope AI Findings</h3>
-            <p>This report supports early screening and risk stratification for Left-Ventricular Outflow Tract (LVOT) murmurs. Findings should be interpreted in conjunction with clinical history and examination by a licensed physician/cardiologist.</p>
-            <div class="finding-badge present">Presence of LVOT Murmur: Present</div>
-          </div>
-          <div class="report-disclaimer">
-            <strong>DISCLAIMER:</strong> This report is intended for interpretation by medical professionals trained in the use of the device and the analysis of its results. The tool is currently intended for early screening and demonstration purposes only. It is not a substitute for clinical diagnosis or a validated medical decision-making tool. The underlying algorithms are still undergoing clinical validation and have not been approved for diagnostic use. In cases of symptoms, abnormal findings, or clinical suspicion, prompt evaluation by a qualified healthcare provider is strongly advised.
-          </div>
-        </div>
-
-        <!-- Patient Report -->
-        <div id="report-patient" class="report-card" style="display:none">
-          <div class="report-header">
-            <div class="rh-left">
-              <img src="lhai_logo.png" alt="lighthearted ai" class="brand-logo" style="height:22px;filter:brightness(0) saturate(100%);" />
-              <div class="web">Website: www.lighthearted.ai<br>Email: info@lighthearted.ai</div>
+          <div class="report-image-col">
+            <h3 class="report-col-label">Patient Report</h3>
+            <div class="report-image-wrapper">
+              <img src="AS_screening_patient_report.png" alt="Patient Facing Report" />
             </div>
-            <div class="rh-right">ID No: R-15-72393</div>
-          </div>
-          <div class="report-patient">
-            <div><span class="label">Patient:</span> <span class="value" id="rp-name-p">Jane Doe</span></div>
-            <div><span class="label">Date of Test:</span> <span class="value">15/09/2025</span></div>
-            <div><span class="label">Patient ID:</span> <span class="value">2210132</span></div>
-            <div><span class="label">Age/Sex:</span> <span class="value" id="rp-age-p">55 / Female</span></div>
-          </div>
-          <div class="report-title">LightScope Optical Stethoscope Report</div>
-          <div class="vitals-grid">
-            <div class="vital-item"><div class="vl">Heart Rate</div><div class="vv">66 BPM</div></div>
-            <div class="vital-item"><div class="vl">Heart Rate Variability</div><div class="vv">25 ms</div></div>
-            <div class="vital-item"><div class="vl">Respiratory Rate</div><div class="vv">N/A</div></div>
-            <div class="vital-item"><div class="vl">Signal Quality</div><div class="vv">Good</div></div>
-          </div>
-          <div class="report-note"><strong>Note:</strong> In healthy adults, average heart rate variability is 42 milliseconds &mdash; the range is between 19 and 75 milliseconds.</div>
-          <div class="report-chart"><canvas id="reportChartP"></canvas></div>
-          <div class="findings-section">
-            <h3>Summary</h3>
-            <p>This report supports early screening and risk stratification for Left-Ventricular Outflow Tract (LVOT) murmurs. Findings should be interpreted in conjunction with clinical history and examination by a licensed physician/cardiologist. We recommend scheduling a follow-up consultation with your healthcare provider or a cardiologist to discuss these findings and determine if a cardiac evaluation is needed.</p>
-            <div class="finding-badge followup">Risk for LVOT murmur: Follow Up</div>
-          </div>
-          <div class="report-disclaimer">
-            <strong>DISCLAIMER:</strong> This report is intended for interpretation by medical professionals trained in the use of the device and the analysis of its results. The tool is currently intended for early screening and demonstration purposes only. It is not a substitute for clinical diagnosis or a validated medical decision-making tool. The underlying algorithms are still undergoing clinical validation and have not been approved for diagnostic use. In cases of symptoms, abnormal findings, or clinical suspicion, prompt evaluation by a qualified healthcare provider is strongly advised.
           </div>
         </div>
 
@@ -747,7 +677,7 @@ function goTo(id) {
   screen.classList.add('active');
   currentScreen = id;
   if (id === 'screen-recording') startWaveformAnimation();
-  if (id === 'screen-reports') setTimeout(drawReportCharts, 100);
+  // reports now use static images, no chart drawing needed
   if (id === 'screen-success') launchConfetti();
 }
 
@@ -756,13 +686,6 @@ let waveformAnimId = null;
 let waveformStartTime = null;
 
 function startRecording() {
-  const name = document.getElementById('patientId').value || 'Jane Doe';
-  const age = document.getElementById('patientAge').value || '55';
-  const sex = document.getElementById('patientSex').value || 'Female';
-  document.getElementById('rp-name-c').textContent = name;
-  document.getElementById('rp-name-p').textContent = name;
-  document.getElementById('rp-age-c').textContent = age + ' / ' + sex;
-  document.getElementById('rp-age-p').textContent = age + ' / ' + sex;
   goTo('screen-recording');
 }
 
@@ -811,7 +734,7 @@ function startWaveformAnimation() {
 
     ctx.beginPath();
     ctx.strokeStyle = '#2563EB';
-    ctx.lineWidth = 1.2;
+    ctx.lineWidth = 2.5;
     ctx.lineJoin = 'round';
 
     for (let i = 0; i < samplesDrawn; i++) {
@@ -839,96 +762,7 @@ function startWaveformAnimation() {
   waveformAnimId = requestAnimationFrame(animate);
 }
 
-// ===== REPORT CHARTS =====
-function drawReportCharts() {
-  ['reportChartC', 'reportChartP'].forEach(canvasId => {
-    const canvas = document.getElementById(canvasId);
-    if (!canvas) return;
-    const container = canvas.parentElement;
-    const ctx = canvas.getContext('2d');
-    const dpr = window.devicePixelRatio || 1;
-    const rect = container.getBoundingClientRect();
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
-    canvas.style.width = rect.width + 'px';
-    canvas.style.height = rect.height + 'px';
-    ctx.scale(dpr, dpr);
-
-    const W = rect.width;
-    const H = rect.height;
-    const midY = H / 2;
-    const amp = H * 0.38;
-    const pad = 48;
-
-    // Axes
-    ctx.strokeStyle = '#ccc';
-    ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(pad, 8);
-    ctx.lineTo(pad, H - 24);
-    ctx.lineTo(W - 10, H - 24);
-    ctx.stroke();
-
-    // Y-axis labels
-    ctx.fillStyle = '#999';
-    ctx.font = '10px Plus Jakarta Sans, sans-serif';
-    ctx.textAlign = 'right';
-    for (let v = -1; v <= 1; v += 0.25) {
-      const y = midY - v * amp;
-      if (y > 4 && y < H - 20) {
-        ctx.fillText(v.toFixed(2), pad - 6, y + 3);
-        ctx.strokeStyle = 'rgba(0,0,0,0.04)';
-        ctx.beginPath(); ctx.moveTo(pad, y); ctx.lineTo(W - 10, y); ctx.stroke();
-        ctx.strokeStyle = '#ccc';
-      }
-    }
-
-    // X-axis labels
-    ctx.textAlign = 'center';
-    ctx.fillStyle = '#999';
-    for (let t = 0; t <= 10; t += 2) {
-      const x = pad + (t / 10) * (W - pad - 10);
-      ctx.fillText(t, x, H - 8);
-    }
-    ctx.fillText('Time (seconds)', W / 2, H - 0);
-
-    // Amplitude label
-    ctx.save();
-    ctx.translate(12, midY);
-    ctx.rotate(-Math.PI / 2);
-    ctx.textAlign = 'center';
-    ctx.fillText('Amplitude', 0, 0);
-    ctx.restore();
-
-    // Chart ID
-    ctx.fillStyle = '#333';
-    ctx.font = '11px Plus Jakarta Sans, sans-serif';
-    ctx.textAlign = 'right';
-    ctx.fillText(canvasId === 'reportChartC' ? 'C-15-50471' : 'R-15-72393', W - 16, 18);
-
-    // Waveform
-    ctx.beginPath();
-    ctx.strokeStyle = canvasId === 'reportChartC' ? '#2563EB' : '#E8366D';
-    ctx.lineWidth = 0.8;
-    const drawW = W - pad - 10;
-    for (let i = 0; i < SIGNAL_DATA.length; i++) {
-      const x = pad + (i / SIGNAL_DATA.length) * drawW;
-      const y = midY - SIGNAL_DATA[i] * amp;
-      if (i === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    }
-    ctx.stroke();
-  });
-}
-
-// ===== REPORT TAB SWITCHING =====
-function showReport(type, btn) {
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('report-clinician').style.display = type === 'clinician' ? 'block' : 'none';
-  document.getElementById('report-patient').style.display = type === 'patient' ? 'block' : 'none';
-  setTimeout(drawReportCharts, 50);
-}
+// (Report charts and tab switching removed — using static report images now)
 
 // ===== CONFETTI =====
 function launchConfetti() {
