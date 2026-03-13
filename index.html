@@ -89,10 +89,10 @@ body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg-dark); co
 .sidebar-footer { margin-top:auto; padding:0 clamp(16px, 1.8vw, 24px); border-top:1px solid rgba(255,255,255,0.06); padding-top:clamp(12px, 1.5vh, 16px); }
 .sidebar-footer span { font-size:clamp(10px, 1vw, 12px); color:var(--text-secondary); }
 
-.main { flex:1; display:flex; flex-direction:column; overflow:hidden; position:relative; min-width:0; }
+.main { flex:1; display:flex; flex-direction:column; overflow:hidden; position:relative; min-width:0; min-height:0; }
 
 /* ===== SCREENS ===== */
-.screen { display:none; flex:1; flex-direction:column; animation: fadeIn 0.4s ease; }
+.screen { display:none; flex:1; flex-direction:column; animation: fadeIn 0.4s ease; min-height:0; }
 .screen.active { display:flex; }
 @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
 
@@ -175,6 +175,9 @@ body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg-dark); co
 }
 .device-item:hover { border-color:rgba(255,255,255,0.2); }
 .device-item.selected { border-color:var(--signal-green); }
+.device-item.guide-pulse {
+  animation: pulseGuide 1.4s ease-in-out infinite, fadeIn 0.4s ease;
+}
 .device-item .name { font-weight:600; font-size:clamp(12px, 1.1vw, 14px); }
 .device-item .mac { font-size:clamp(10px, 1vw, 12px); color:rgba(255,255,255,0.6); margin-top:2px; }
 .device-item .check { color:var(--signal-green); font-size:clamp(16px, 1.6vw, 20px); }
@@ -264,7 +267,7 @@ body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg-dark); co
 .spinner { width:18px; height:18px; border:2px solid rgba(255,255,255,0.15); border-top-color:#fff; border-radius:50%; animation:spin 0.8s linear infinite; flex-shrink:0; }
 
 /* ===== SCREEN 8: REPORTS ===== */
-.reports-screen { flex:1; display:flex; flex-direction:column; padding:clamp(16px, 2.5vw, 32px); overflow-y:auto; }
+.reports-screen { flex:1; display:flex; flex-direction:column; padding:clamp(16px, 2.5vw, 32px); overflow-y:auto; min-height:0; }
 .reports-tabs { display:flex; gap:clamp(8px, 1vw, 12px); margin-bottom:clamp(16px, 2vh, 24px); }
 .tab-btn {
   padding:clamp(8px, 0.9vh, 10px) clamp(16px, 2vw, 24px); border-radius:50px; border:1.5px solid rgba(255,255,255,0.12);
@@ -314,11 +317,11 @@ body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg-dark); co
 
 /* Side-by-side report images */
 .reports-side-by-side {
-  display:flex; gap:clamp(1rem, 2.5vw, 2rem); flex:1; min-height:0; align-items:flex-start;
-  overflow-y:auto; justify-content:center;
+  display:flex; gap:clamp(1rem, 2.5vw, 2rem); align-items:flex-start;
+  justify-content:center; flex-shrink:0;
 }
 .report-image-col {
-  flex:0 1 33rem; display:flex; flex-direction:column; align-items:center; min-width:0;
+  flex:0 1 24rem; display:flex; flex-direction:column; align-items:center; min-width:0;
 }
 .report-col-label {
   font-size:clamp(0.8rem, 1.3vw, 1rem); font-weight:700; color:var(--text-primary);
